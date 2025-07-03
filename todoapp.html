@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .todo-container {
+            background: #fff;
+            padding: 2rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            width: 350px;
+        }
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+        }
+        #input {
+            width: 70%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .add-btn {
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            transition: background 0.2s;
+        }
+        .add-btn:hover {
+            background: #1d4ed8;
+        }
+        #list-container {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+        #list-container li {
+            background: #f1f5f9;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+        .delete-btn {
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>Todo List</h1>
+        <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+            <input id="input" placeholder="Add a new task...">
+            <button class="add-btn" onclick="add()">Add Task</button>
+        </div>
+        <ul id="list-container">
+            <li>Enter Your Task Here!
+                <button class="delete-btn" onclick="deleteItem(event)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var ul = document.getElementById("list-container");
+        var input = document.getElementById("input");
+        function add() {
+            var value = input.value.trim();
+            if (value === "") return;
+            var listitem = document.createElement("li");
+            listitem.innerHTML = value + " <button class='delete-btn' onclick='deleteItem(event)'>Delete</button>";
+            ul.append(listitem);
+            input.value = "";
+            input.focus();
+        }
+        function deleteItem(event) {
+            event.target.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
